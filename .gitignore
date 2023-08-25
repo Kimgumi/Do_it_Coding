@@ -148,6 +148,7 @@ dmypy.json
 
 # PyCharm
 .idea/
+migrations/
 
 # pytype static type analyzer
 .pytype/
