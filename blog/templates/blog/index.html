@@ -13,7 +13,9 @@
     <h3>{{ p }}</h3>
     <hr>
     <h2>모델의 필드값 보여주기</h2>
-    <p>{{ p.title }}</p>
+    <a href="/blog/{{ p.PK_KEY }}/">
+        <p>{{ p.title }}</p>
+    </a>
     <p>{{ p.created_at }}</p>
     <p>{{ p.content }}</p>
     {% endfor %}
