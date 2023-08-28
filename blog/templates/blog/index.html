@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    <h1>Blog</h1>
+    <p>FBV로 페이지 제작</p>
+
+    {% for p in posts %}
+    <h3>{{ p }}</h3>
+    <hr>
+    <h2>모델의 필드값 보여주기</h2>
+    <p>{{ p.title }}</p>
+    <p>{{ p.created_at }}</p>
+    <p>{{ p.content }}</p>
+    {% endfor %}
+</body>
+</html>
