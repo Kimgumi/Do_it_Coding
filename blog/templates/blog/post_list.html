@@ -7,19 +7,7 @@
 </head>
 <body>
     <h1>Blog</h1>
-    <p>FBV로 페이지 제작</p>
-    <span>
-        {% for p in posts %}
-            <h3>{{ p }}</h3>
-        <hr>
-            <h2>모델의 필드값 보여주기</h2>
-            <a href="/blog/{{ p.PK_KEY }}/">
-                <p>{{ p.title }}</p>
-            </a>
-            <p>{{ p.created_at }}</p>
-            <p>{{ p.content }}</p>
-        {% endfor %}
-    </span>
+
 
     <p>CBV로 페이지 제작</p>
     {% for p in post_list %}
