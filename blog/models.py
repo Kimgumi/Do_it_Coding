@@ -1,4 +1,5 @@
 from django.db import models
+import os
 
 # Create your models here.
 class Post(models.Model):
@@ -20,3 +21,11 @@ class Post(models.Model):
 
     def PK_KEY(self):
         return f'{self.pk}'
+
+    # 파일명
+    def get_file_name(self):
+        return os.path.basename(self.file_upload.name)
+
+    # 파일의 확장자
+    def get_file_ext(self):
+        return self.get_file_name().split('.')[-1]

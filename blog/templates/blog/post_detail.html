@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/74b7559091.js" crossorigin="anonymous"></script>
     <title>{{ post.title }} - Blog</title>
 </head>
 <body>
@@ -37,6 +38,13 @@
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4">{{ post.content }}</p>
+                            {% if post.file_upload %}
+                                Download:
+                                <a href="{{ post.file_uploead.url }}" class="btn btn-outline-dark" role="button" download="파일첨부">
+                                    <i class="fa-regular fa-file"></i>
+                                    {{ post.get_file_name }}
+                                </a>
+                            {% endif %}
                             <h2 class="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2>
                             <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
                             <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
