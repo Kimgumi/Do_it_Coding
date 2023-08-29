@@ -22,7 +22,9 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on
+                            <div class="text-muted fst-italic mb-2">
+                                Posted on
+                                <h5 class="text-muted">{{ post.hook_text }}</h5>
                                 <p>{{ post.created_at }}</p>
                                 by
                                 <a href="#">작성자명</a>
