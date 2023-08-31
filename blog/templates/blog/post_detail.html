@@ -3,8 +3,9 @@
         {{ post.title }}
     {% endblock %}
     {% block main_area %}
+                    <div id="post-area">
                     <!-- Post content-->
-                    <article>
+                        <article>
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
@@ -39,7 +40,10 @@
                             <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
                             <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
                         </section>
-                    </article>
+                        </article>
+                    </div>
+                    <hr>
+                    <div id="comment-area">
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
@@ -82,6 +86,7 @@
                             </div>
                         </div>
                     </section>
+                    </div>
         {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
