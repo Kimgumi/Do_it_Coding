@@ -7,6 +7,14 @@ class TestView(TestCase):
     def setUp(self):# 기본 설정
         self.client = Client()
 
+    def navbar_test(self, soup):
+        navbar = soup.nav
+        self.assertIn('Blog', navbar.text)
+        self.assertIn('About Me', navbar.text)
+
+        blog_btn = navbar.find('a', text='Blog')
+        self.assertEqual(blog_btn.attrs['href'], '/blog/')
+
     def test_post_list(self):
         # 테스트할 내용 나열 후 코드 작성
         #1. 목록 페이지 가져오기
@@ -19,9 +27,10 @@ class TestView(TestCase):
         self.assertEqual(soup.title.text, 'Blog')
 
         #4. 내비게이션바
-        navbar = soup.nav
+        #navbar = soup.nav
         #5. 내비게이션 바에 있는 문구 확인
-        self.assertIn('About Me', navbar.text)
+        #self.assertIn('About Me', navbar.text)
+        self.navbar_test(soup)
 
         # 6. 포스트 게시물이 없다면
         self.assertEqual(Post.objects.count(), 0)
@@ -59,8 +68,12 @@ class TestView(TestCase):
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
 
+        # 포스트의 네비게이션바 테스트
+        self.navbar_test(soup)
+
         # 2. 탭 타이틀
         self.assertIn(post_001.title, soup.title.text)
+
         # 3. 포스트의 제목
         main_area = soup.find('div', id='main-area')
         post_area = main_area.find('div', id='post-area')
@@ -69,3 +82,4 @@ class TestView(TestCase):
 
         # 5. 포스트의 내용
         self.assertIn(post_001.content, post_area.text)
+
