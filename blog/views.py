@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Post
+from .models import Post, Category, Tag
 
 # Create your views here.
 #CBV로 여러 포스트 나열 목록 웹페이지 만들기
@@ -14,6 +14,20 @@ class PostDetail(DetailView): #single_post_page함수 대체
     model = Post
     template_name = 'blog/post_detail.html'
 
+def tag_page(request, slug):
+    tag = Tag.objects.get(slug=slug)
+    post_list = tag.post_set.all()
+
+    return render(
+        request,
+        'blog/post_list.html',
+        {
+            'post_list': post_list,
+            'tag': tag,
+            'categories': Category.objects.all(),
+            'no_category_post_count': Post.objects.filter(category=None).count(),
+        }
+    )
 #FBV로 페이지 제작시 방법
 # def index(request):
 #     #posts = Post.objects.all()

@@ -13,12 +13,31 @@
                     </a>
                     <div class="card-body">
                         <div class="small text-muted">January 1, 2023</div>
-                            <h2 class="card-title">{{ p.title }}</h2>
+                            <h2 class="card-title">{{ p.title }}
+                            {% if category %}
+                                <span class = "badge badge-secondary">{{ category }}</span>
+                            {% endif %}
+                            {% if tag %}
+                                <span class = "badge badge-light">{{ tag }}({{ tag.post_set.count }})</span>
+                            {% endif %}
+                            </h2>
                             {% if p.hook_text %}
                                 <h5 class="text-muted">{{ p.hook_text }}</h5>
                             {% endif %}
                             <p class="head">by<a href="#">{{ p.author | upper }}</a> </p>
                             <p class="card-text">{{ p.content | truncatewords:15 }}</p>
+                            {% if p.tags.exists %}
+                                <i class="fas fa-tags"></i>
+                                {% for tag in p.tags.iterator %}
+                                    <a href="{{ tag.get_absolute_url }}">
+                                        <span class="badge badge-pill badge-light">
+                                            {{ tag }}
+                                        </span>
+                                    </a>
+                                {% endfor %}
+                                <br>
+                                <br>
+                            {% endif %}
                             <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Read more →</a>
                         </div>
                         <div class="card-footer text-muted">
