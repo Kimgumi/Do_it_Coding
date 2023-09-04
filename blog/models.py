@@ -6,9 +6,11 @@ import os
 class Post(models.Model):
     title = models.CharField(max_length=30)
     hook_text = models.CharField(max_length=100, blank=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # 삭제시, 포스트도 삭제 - author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # 삭제시, 작성자만 삭제
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     content = models.TextField()
-    
+
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d', blank=True)
     file_upload = models.FileField(upload_to="blog/files//%Y/%m/%d", blank=True)
 
