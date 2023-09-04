@@ -13,12 +13,17 @@
     <hr>
     {% include 'blog/same/navbar.html' %}
     <header class="py-5 bg-light border-bottom mb-4">
-            <div class="container">
+        <div class="container">
                 <div class="text-center my-5">
+                    <a href="create_post/">
+                        <button type="button" class="btn btn-primary">
+                            작성
+                        </button>
+                    </a>
                     <h1 class="fw-bolder">Welcome to Blog Home!</h1>
                     <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
                 </div>
-            </div>
+        </div>
     </header>
      <div class="container">
             <div class="row">
@@ -30,11 +35,7 @@
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
-                    <a href="create_post/">
-                        <button type="button" class="btn btn-primary">
-                            작성
-                        </button>
-                    </a>
+
                     <!-- Search widget-->
                     <div class="card mb-4">
                         <div class="card-header">Search</div>

@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Category, Tag
 
 # Create your views here.
@@ -13,6 +14,12 @@ class PostList(ListView): #index함수 대체
 class PostDetail(DetailView): #single_post_page함수 대체
     model = Post
     template_name = 'blog/post_detail.html'
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = [
+        'title', 'hook_text', 'content', 'file_upload', 'head_image'
+    ]
 
 def tag_page(request, slug):
     tag = Tag.objects.get(slug=slug)

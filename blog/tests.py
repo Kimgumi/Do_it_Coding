@@ -44,11 +44,10 @@ class TestView(TestCase):
         self.assertIn('아직 게시물이 없습니다', main_area.text)
 
         # 7. 게시물이 1개 존재
-        post_001 = Post.objects.create(
+        self.post_001 = Post.objects.create(
             title='첫번째',
             content='첫번째 포스트',
             author=self.user_obama,
-            category=self.category_programming,
         )
         self.post_001.tags.add(self.tag_hello)
         self.post_001.tags.add(self.tag_python_kr)
@@ -60,7 +59,7 @@ class TestView(TestCase):
         self.assertEqual(response.status_code, 200)
 
         main_area = soup.find('div', id='main-area')
-        self.assertIn(post_001.title, main_area.text)
+        self.assertIn(self.post_001.title, main_area.text)
         self.assertNotIn('아직 게시물이 없습니다', main_area.text)
 
         # 9. 작성자
@@ -96,3 +95,15 @@ class TestView(TestCase):
         # 5. 포스트의 내용
         self.assertIn(post_001.content, post_area.text)
 
+    def test_create_post(self):
+        response = self.client.get('/blog/create_post/')
+        self.assertNotEqual(response.status_code, 200)
+        self.client.login(username='trump', password='minkado813@')
+
+        response = self.client.get('/blog/create_post/')
+        self.assertEqual(response.status_code, 200)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        self.assertEqual('Create Post - Blog', soup.title.text)
+        main_area = soup.find('div', id="main-area")
+        self.assertIn('Create New Post', main_area.text)
