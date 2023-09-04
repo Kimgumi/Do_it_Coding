@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Category
 
 # Create your tests here.
 class TestView(TestCase):
@@ -9,6 +9,7 @@ class TestView(TestCase):
         self.client = Client()
         self.user_trump = User.objects.create_user(username='trump', password="minkado813@")
         self.user_obama = User.objects.create_user(username='obama', password='somepassword')
+
 
     def navbar_test(self, soup):
         navbar = soup.nav
@@ -44,7 +45,8 @@ class TestView(TestCase):
         post_001 = Post.objects.create(
             title='첫번째',
             content='첫번째 포스트',
-            author=self.user_obama
+            author=self.user_obama,
+            category=self.category_programming,
         )
         self.assertEqual(Post.objects.count(), 1)
 
