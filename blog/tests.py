@@ -98,6 +98,7 @@ class TestView(TestCase):
     def test_create_post(self):
         response = self.client.get('/blog/create_post/')
         self.assertNotEqual(response.status_code, 200)
+
         self.client.login(username='trump', password='minkado813@')
 
         response = self.client.get('/blog/create_post/')
@@ -107,3 +108,15 @@ class TestView(TestCase):
         self.assertEqual('Create Post - Blog', soup.title.text)
         main_area = soup.find('div', id="main-area")
         self.assertIn('Create New Post', main_area.text)
+
+
+        self.client.post(
+            '/blog/create_post/',
+            {
+                'title': 'Post form 만들기',
+                'content': 'Post form 페이지를 만듭니다',
+            }
+        )
+        last_post = Post.objects.last()
+        self.assertEqual(last_post.title, "Post form 만들기")
+        self.assertEqual(last_post.author.username, 'trump')
