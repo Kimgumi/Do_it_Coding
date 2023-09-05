@@ -10,6 +10,8 @@ class TestView(TestCase):
         self.user_trump = User.objects.create_user(username='trump', password="minkado813@")
         self.user_obama = User.objects.create_user(username='obama', password='somepassword')
 
+        self.user_obama.is_staff = True
+        self.user_obama.save()
         self.tag_python_kr = Tag.objects.create(name='파이썬 공부', slug='파이썬-공부')
         self.tag_hello = Tag.objects.create(name='hello', slug='hello')
 
@@ -100,7 +102,10 @@ class TestView(TestCase):
         self.assertNotEqual(response.status_code, 200)
 
         self.client.login(username='trump', password='minkado813@')
+        response = self.client.get('/blog/create_post/')
+        self.assertNotEqual(response.status_code, 200)
 
+        self.client.login(username='obama', password='minkado813@')
         response = self.client.get('/blog/create_post/')
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -119,4 +124,4 @@ class TestView(TestCase):
         )
         last_post = Post.objects.last()
         self.assertEqual(last_post.title, "Post form 만들기")
-        self.assertEqual(last_post.author.username, 'trump')
+        self.assertEqual(last_post.author.username, 'obama')
