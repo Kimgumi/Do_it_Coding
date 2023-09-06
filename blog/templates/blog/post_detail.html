@@ -22,9 +22,16 @@
                                 <hr>
                                 {% if user.is_authenticated and user == post.author %}
                                     <a class="btn btn-info btn-sm float-right" href="/blog/update_post/{{ post.pk }}">
-                                        <i class="fas fa-pen"></i> Edit Post 
+                                        <i class="fas fa-pen"></i> Edit Post
                                     </a>
                                 {% endif %}
+                                <hr>
+                                {% if user.is_authenticated and user == post.author %}
+                                    <a class="btn btn-info btn-sm float-right" href="/blog/remove/{{ post.pk }}">
+                                        <i class="fas fa-pen"></i> Remove Post
+                                    </a>
+                                {% endif %}
+                                <hr>
                             </div>
                             <!-- Post categories-->
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
