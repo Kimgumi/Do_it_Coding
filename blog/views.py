@@ -12,6 +12,7 @@ class PostList(ListView): #index함수 대체
     #ListView 클래스를 사용해 'model명_list.html'을 기본 템플릿으로 사용
     template_name = 'blog/post_list.html'
     ordering = '-pk' # 최신순
+    paginate_by = 5
 
 class PostDetail(DetailView): #single_post_page함수 대체
     model = Post
