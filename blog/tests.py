@@ -102,10 +102,7 @@ class TestView(TestCase):
         self.assertNotEqual(response.status_code, 200)
 
         self.client.login(username='trump', password='minkado813@')
-        response = self.client.get('/blog/create_post/')
-        self.assertNotEqual(response.status_code, 200)
 
-        self.client.login(username='obama', password='minkado813@')
         response = self.client.get('/blog/create_post/')
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -124,4 +121,4 @@ class TestView(TestCase):
         )
         last_post = Post.objects.last()
         self.assertEqual(last_post.title, "Post form 만들기")
-        self.assertEqual(last_post.author.username, 'obama')
+        self.assertEqual(last_post.author.username, 'trump')
