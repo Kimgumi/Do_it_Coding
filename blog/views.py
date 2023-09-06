@@ -106,18 +106,12 @@ class PostSearch(PostList):
         context['search_info'] = f'Search: {q} ({self.get_queryset().count()})'
         return context
 
+
+
 def remove_post(request, pk):
-    post = Post.objects.get(pk=pk)
-    if request.method == 'POST':
-        post.delete()
-        return redirect('/blog/')
-    return render(
-        request,
-        'blog/post_remove.html',
-        {
-            'Post': post,
-        }
-    )
+    post = Post.objects.get(pk = pk)
+    post.delete()
+    return redirect('/blog/')
 
 def tag_page(request, slug):
     tag = Tag.objects.get(slug=slug)
