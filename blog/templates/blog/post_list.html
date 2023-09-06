@@ -10,6 +10,11 @@
         {% if post_list.exists %}
             {% for p in post_list %}
                 <!-- Featured blog post-->
+                {% if search_info %}
+                    <small class="text-muted">
+                        {{ search_info }}
+                    </small>
+                {% endif %}
                 <div class="card mb-4">
                     <a href="#!">
                         {% if p.head_image %}
@@ -81,7 +86,7 @@
                         {% endif %}
                     </ul>
                 </nav>
-                {% endif %} 
+                {% endif %}
     {% endblock %}
 
 </body>
