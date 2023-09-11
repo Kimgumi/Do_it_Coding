@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'sing_pages/css/about_me.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <title>Introduce</title>
+</head>
+<body>
+    {% include 'sing_pages/same/navbar.html' %}
+    <nav>
+        <a href="/blog/">Blog</a>
+        <a href="/about_me/">About me</a>
+    </nav>
+
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>안녕하세요. 메로입니다</h1>
+                    <br>
+                    <p class="lead">
+                        음악과 춤을 좋아합니다. <br>
+                        백엔드나 QA를 지망하여 이 쪽으로 취업을 위해 공부 중인 취준생입니다
+                    </p>
+                    <ul>
+                        <li>WORK EXPERIENCE</li>
+                        <ul>
+                            <li>Do it - Django</li>
+                            <li>Spring 예정</li>
+                        </ul>
+                        <li>EDUCATION</li>
+                        <ul>
+                            <li>융합전자공학부, 한양대학교</li>
+                            <li>전자공학과, 경기대학교 - 전과</li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-fluid" src="{% static 'sing_pages/images/517f8a4ca62c4d67b44.jpeg' %}">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bd-light margin-for-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>PORTFOLIO</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card" data-toggle="modal" data-target="#pycon2017">
+                    <img class="card-img-top" src="{% static 'sing_pages/images/997D8C335989965521.jpeg' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">파이썬으로 웹개발하기</h5>
+                        <p>Django와 bootstrap으로 간단한 웹페이지 제작을 해보았습니다. 혼자 만들 포폴 제작 완성끝내겠습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal fade" id="pycon2017" tabindex="-1" role="dialog" aria-labelledby="pycon2017ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pycon2017ModalLabel">파이썬으로 웹개발하기</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <img class="img-fluid" src="{% static 'sing_pages/images/997D8C335989965521.jpeg' %}">
+                        </div>
+                        <div class="col-lg-5">
+                            <p>Django와 bootstrap으로 간단한 웹페이지 제작을 해보았습니다. 혼자 만들 포폴 제작 완성끝내겠습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="fixed-bottom">
+        {% include 'sing_pages/same/footer.html' %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

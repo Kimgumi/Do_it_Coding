@@ -48,14 +48,14 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
                     self.object.tags.add(tag)
             return response
         else:
-            return redirect('/blog/')
+            return redirect('/single_page/')
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
     fields = [
         'title', 'hook_text', 'content', 'file_upload', 'head_image'
     ]
-    template_name = 'blog/post_update_form.html'
+    template_name = 'single_page/post_update_form.html'
     def get_context_data(self, **kwargs):
         context = super(PostUpdate, self).get_context_data()
         if self.object.tags.exists():
@@ -106,12 +106,10 @@ class PostSearch(PostList):
         context['search_info'] = f'Search: {q} ({self.get_queryset().count()})'
         return context
 
-
-
 def remove_post(request, pk):
     post = Post.objects.get(pk = pk)
     post.delete()
-    return redirect('/blog/')
+    return redirect('/single_page/')
 
 def tag_page(request, slug):
     tag = Tag.objects.get(slug=slug)
@@ -119,7 +117,7 @@ def tag_page(request, slug):
 
     return render(
         request,
-        'blog/post_list.html',
+        'single_page/post_list.html',
         {
             'post_list': post_list,
             'tag': tag,
@@ -133,7 +131,7 @@ def tag_page(request, slug):
 #     posts = Post.objects.all().order_by('-pk')   #최신글부터
 #     return render(
 #         request,
-#         'blog/index.html',
+#         'single_page/index.html',
 #         {
 #             'posts': posts,
 #         }
@@ -143,7 +141,7 @@ def tag_page(request, slug):
 #
 #     return render(
 #         request,
-#         'blog/single_post_page.html',
+#         'single_page/single_post_page.html',
 #         {
 #             'post': post,
 #         }

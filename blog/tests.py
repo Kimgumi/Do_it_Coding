@@ -21,12 +21,12 @@ class TestView(TestCase):
         self.assertIn('About Me', navbar.text)
 
         blog_btn = navbar.find('a', text='Blog')
-        self.assertEqual(blog_btn.attrs['href'], '/blog/')
+        self.assertEqual(blog_btn.attrs['href'], '/single_page/')
 
     def test_post_list(self):
         # 테스트할 내용 나열 후 코드 작성
         #1. 목록 페이지 가져오기
-        response = self.client.get('/blog/')
+        response = self.client.get('/single_page/')
         #2. 페이지 로드
         self.assertEqual(response.status_code, 200)
 
@@ -56,7 +56,7 @@ class TestView(TestCase):
         self.assertEqual(Post.objects.count(), 1)
 
         # 8. 새로고침
-        response = self.client.get('/blog/')
+        response = self.client.get('/single_page/')
         soup = BeautifulSoup(response.content, 'html.parser')
         self.assertEqual(response.status_code, 200)
 
@@ -74,7 +74,7 @@ class TestView(TestCase):
             content = '첫번째 포스트',
         )
         # 2.그 포스트의 url
-        self.assertEqual(post_001.get_absolute_url(), '/blog/1/')
+        self.assertEqual(post_001.get_absolute_url(), '/single_page/1/')
 
         # 포스트의 상세 페이지 테스트
         # 1. url로 접근하면 정상 작동
@@ -98,12 +98,12 @@ class TestView(TestCase):
         self.assertIn(post_001.content, post_area.text)
 
     def test_create_post(self):
-        response = self.client.get('/blog/create_post/')
+        response = self.client.get('/single_page/create_post/')
         self.assertNotEqual(response.status_code, 200)
 
         self.client.login(username='trump', password='minkado813@')
 
-        response = self.client.get('/blog/create_post/')
+        response = self.client.get('/single_page/create_post/')
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -113,7 +113,7 @@ class TestView(TestCase):
 
 
         self.client.post(
-            '/blog/create_post/',
+            '/single_page/create_post/',
             {
                 'title': 'Post form 만들기',
                 'content': 'Post form 페이지를 만듭니다',

@@ -19,7 +19,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        return f'/blog/tag/{self.slug}/'
+        return f'/single_page/tag/{self.slug}/'
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
@@ -32,8 +32,8 @@ class Post(models.Model):
     # 여기서 자체 생성한 클래스는 위에 올려두기
     tags = models.ManyToManyField(Tag, blank=True)
 
-    head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d', blank=True)
-    file_upload = models.FileField(upload_to="blog/files//%Y/%m/%d", blank=True)
+    head_image = models.ImageField(upload_to='single_page/images/%Y/%m/%d', blank=True)
+    file_upload = models.FileField(upload_to="single_page/files//%Y/%m/%d", blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -43,7 +43,7 @@ class Post(models.Model):
         return f'[{self.pk}]{self.title} :: {self.author}'
 
     def get_absolute_url(self):
-        return f'/blog/{self.pk}/'
+        return f'/single_page/{self.pk}/'
 
     def PK_KEY(self):
         return f'{self.pk}'
@@ -55,4 +55,8 @@ class Post(models.Model):
     # 파일의 확장자
     def get_file_ext(self):
         return self.get_file_name().split('.')[-1]
+
+    # 작성자 아바타
+    def get_avatar_url(self):
+        return f'https://doitdjango.com/avatar/id/1684/74a1de4b0fe8590d/svg/{self.author.email}'
 
